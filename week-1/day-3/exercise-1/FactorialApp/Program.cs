@@ -16,7 +16,7 @@ namespace FactorialApp
             }
             else
             {
-                int result = CalculateFactorial(userInput);
+                long result = CalculateFactorial(userInput);
                 Console.WriteLine($"Factorial of {userInput} is {result}");
             }
         }
