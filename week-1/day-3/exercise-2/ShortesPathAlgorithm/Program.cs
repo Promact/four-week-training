@@ -152,12 +152,14 @@
                 Console.WriteLine($"{i}\t{distances[i]}");
             }
 
+
             // Expected output:
             // Vertex  Distance from Source
             // 0       2
             // 1       0
             // 2       3
 
+            Console.ReadKey();
             Console.WriteLine();
         }
         private static void RunTestcase5()
@@ -223,7 +225,7 @@
                 visited[i] = false;
             }
 
-            distances[source] = int.MinValue;
+            distances[source] = 0;
 
             for (int count = 0; count < vertices - 1; count++)
             {
