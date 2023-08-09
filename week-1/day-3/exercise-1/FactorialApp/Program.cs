@@ -1,20 +1,64 @@
-﻿namespace FactorialApp
+﻿using System.Numerics;
+using System.Xml.Schema;
+
+namespace Day3_Tasks
 {
-    public class Program
+    internal class Program
     {
-        public static void Main()
+        static void Main(string[] args)
         {
-            Console.Write("Enter a number: ");
-            int number = int.Parse(Console.ReadLine());
 
-            long factorial = CalculateFactorial(number);
+            while (true)
+            {
+                try
+                {
 
-            Console.WriteLine($"The factorial of {number} is: {factorial}");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Please write a number : ");
+                    int number = Convert.ToInt32(Console.ReadLine());
+
+                    if (number < 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Please write postive numberfor factorial");
+                        continue;
+                    }
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Factorial of number " + number + " is : " + factorial(number));
+                    Console.ReadKey();
+                    break;
+                }
+
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please write integer number for factorial");
+                }
+            }
         }
 
-        public static long CalculateFactorial(int number)
+        static BigInteger factorial(int n)
         {
-            throw new NotImplementedException();
+
+            BigInteger total = 1;
+            if (n == 0 || n == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                while (n > 0)
+                {
+                    total *= n;
+                    n--;
+                }
+            }
+            return total;
         }
+
+
     }
+
+
 }
