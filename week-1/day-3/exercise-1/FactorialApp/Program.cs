@@ -1,4 +1,6 @@
-﻿namespace FactorialApp
+﻿using System;
+
+namespace FactorialApp
 {
     public class Program
     {
@@ -14,6 +16,18 @@
 
         public static long CalculateFactorial(int number)
         {
+            long result = number;
+            int count = 1;
+
+            while (count < number)
+            {
+                result = result * count;
+                count++;
+
+            }
+
+            Console.WriteLine("facorial is " + result);
+            return result;
             throw new NotImplementedException();
         }
     }
