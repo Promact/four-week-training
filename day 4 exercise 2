@@ -1,0 +1,46 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+class FibonacciIterator : IEnumerable<int>
+{
+    private int count;
+
+    public FibonacciIterator(int count)
+    {
+        this.count = count;
+    }
+
+    public IEnumerator<int> GetEnumerator()
+    {
+        int a = 0, b = 1;
+
+        for (int i = 0; i < count; i++)
+        {
+            yield return a;
+            int temp = a;
+            a = b;
+            b = temp + b;
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        FibonacciIterator fibonacciIterator = new FibonacciIterator(10);
+
+        foreach (int number in fibonacciIterator)
+        {
+            Console.WriteLine(number);
+        }
+
+        Console.ReadKey();
+    }
+}
