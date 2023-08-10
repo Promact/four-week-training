@@ -1,13 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
-namespace Circle
+class Circle
 {
-    internal class Circle
+    public double Radius { get; private set; }
+
+    public Circle(double radius)
     {
-        // Implement the Circle class here
+        Radius = radius;
+    }
+
+    public double GetArea()
+    {
+        return Math.PI * Radius * Radius;
+    }
+
+    public double GetCircumference()
+    {
+        return 2 * Math.PI * Radius;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Create a Circle object with a given radius
+        double radius = 5.0;
+        Circle circle = new Circle(radius);
+
+        // Display area and circumference
+        Console.WriteLine($"Circle with radius {radius}");
+        Console.WriteLine($"Area: {circle.GetArea()}");
+        Console.WriteLine($"Circumference: {circle.GetCircumference()}");
+        Console.ReadLine();
+
     }
 }
