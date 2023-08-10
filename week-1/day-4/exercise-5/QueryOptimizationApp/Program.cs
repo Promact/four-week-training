@@ -1,37 +1,25 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
 
-namespace QueryOptimizationApp
+namespace Day3_Task5
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            List<int> data = GenerateRandomNumbers(10000000);
-            Stopwatch sw = Stopwatch.StartNew();
-            // Current implementation
-            var originalQuery = data.Where(x => x > 100).OrderByDescending(x => x).Take(10);
-            sw.Stop();
-            Console.WriteLine("Original Query: {0} ms", sw.ElapsedMilliseconds);
+            int collectionSize = 1000000;
+            int[] array = Enumerable.Range(0, collectionSize).ToArray();
 
-            // Optimized implementation
-            sw.Restart();
-            
-            sw.Stop();
-            Console.WriteLine("Optimized Query: {0} ms", sw.ElapsedMilliseconds);
+            Stopwatch stopwatch = new Stopwatch();
+
+            // Original LINQ query
+            stopwatch.Start();
+            var evenOriginal = array.Where(n => n % 2 == 0).ToList();
+            stopwatch.Stop();
+            Console.WriteLine("Original solution: " + stopwatch.Elapsed);
+
+            // Optimized LINQ
         }
-
-        static List<int> GenerateRandomNumbers(int count)
-        {
-            Random random = new Random();
-            List<int> numbers = new List<int>();
-
-            for (int i = 0; i < count; i++)
-            {
-                int randomNumber = random.Next();
-                numbers.Add(randomNumber);
-            }
-
-            return numbers;
         }
-    }
-}
+        }

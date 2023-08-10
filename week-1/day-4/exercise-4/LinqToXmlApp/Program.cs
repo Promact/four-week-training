@@ -1,42 +1,52 @@
-﻿namespace LinqToXmlApp
+﻿using System;
+using System.Linq;
+using System.Xml.Linq;
+using static System.Reflection.Metadata.BlobBuilder;
+
+namespace Day4_Task4
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            // Assume there is an XML document with the following structure:
-            // <Books>
-            //     <Book>
-            //         <Title>Book Title 1</Title>
-            //         <Author>Author 1</Author>
-            //         <Genre>Genre 1</Genre>
-            //     </Book>
-            //     ...
-            // </Books>
-            // Write above book structure as a c# string
-            string xmlString = @"<Books>
-                                    <Book>
-                                        <Title>Book Title 1</Title>
-                                        <Author>Author 1</Author>
-                                        <Genre>Genre 1</Genre>
-                                    </Book>
-                                    <Book>
-                                        <Title>Book Title 2</Title>
-                                        <Author>Author 2</Author>
-                                        <Genre>Genre 2</Genre>
-                                    </Book>
-                                    <Book>
-                                        <Title>Book Title 3</Title>
-                                        <Author>Author 3</Author>
-                                        <Genre>Genre 3</Genre>
-                                    </Book>
-                                </Books>";
+            XElement xmlDoc = XElement.Load("C:\\Users\\admin\\source\\repos\\Hiren\\four-weeks-training\\week-1\\day-4\\exercise-4\\LinqToXmlApp\\Temp.xml");
+            Console.WriteLine(xmlDoc);
 
-            // Create an XDocument object from the XML string
+            string targetGenre = "Novel";
+            var booksInGenre = xmlDoc.Descendants("Book")
+                                     .Where(book => (string)book.Element("Genre") == targetGenre);
 
-            // Write the title of all books to the console
+            Console.WriteLine($"Books in the '{targetGenre}' genre:");
+            foreach (var book in booksInGenre)
+            {
+                Console.WriteLine($"Title: {book.Element("Title").Value}");
+                Console.WriteLine($"Author: {book.Element("Author").Value}");
+                Console.WriteLine($"Genre: {book.Element("Genre").Value}");
+                Console.WriteLine();
+            }
 
-            // Write the title of all books with genre "Genre 1" to the console
+            string myXML = @"
+                        <Books>
+                        <Book>
+		                <Title>To Kill a Wolf</Title>
+		                        <Author>Harry Styles</Author>
+		                        <Genre>Novel</Genre>
+	                    </Book>
+                        </Books>";
+
+            XDocument xdoc = new XDocument();
+            xdoc = XDocument.Parse(myXML);
+
+            var result = xdoc.Element("Books").Descendants();
+
+            Console.WriteLine("After adding new element : ");
+            foreach (XElement item in result)
+            {
+                Console.WriteLine(item.Value);
+            }
+
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadKey();
 
         }
     }
