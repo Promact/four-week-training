@@ -223,7 +223,20 @@
                 visited[i] = false;
             }
 
-            distances[source] = int.MinValue;
+            /* Here the int.MinValue is taking the minimum value which repersent the minimum
+             * value of int data type and it indicate that the distance from the source vertex
+             * to itself is negative infinity.
+             * 
+             * But in Dijkstra algorithm distances[source] always indicate the distance from 
+             * the source vertex to itself and it must be set 0.
+             * 
+             * The use of very negative values can lead to integer overflow issues when performing
+             * arithmetic operations. Dijkstra's algorithm is designed to work with distances that
+             * are real and non-negative values.
+             */
+            // distances[source] = int.MinValue;
+
+            distances[source] = 0;
 
             for (int count = 0; count < vertices - 1; count++)
             {
