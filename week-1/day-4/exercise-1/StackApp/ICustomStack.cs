@@ -1,6 +1,6 @@
 ﻿namespace StackApp
 {
-    internal interface ICustomStack<T>
+    public interface ICustomStack<T>
     {
         void Push(T item);
         T Pop();
