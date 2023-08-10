@@ -1,13 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace Circle
+public class Circle
 {
-    internal class Circle
+    public double Radius { get; set; }
+
+    public Circle(double radius)
     {
-        // Implement the Circle class here
+        Radius = radius;
     }
+
+    public double GetArea()
+    {
+        return Math.PI * Math.Pow(Radius, 2);
+    }
+    public double GetCircumference()
+    {
+        return 2 * Math.PI * Radius;
+    }
+
 }
