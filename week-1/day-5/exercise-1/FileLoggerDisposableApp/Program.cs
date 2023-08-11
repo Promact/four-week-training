@@ -5,6 +5,12 @@
         static void Main(string[] args)
         {
             // Use FileLogger and dispose of it properly
+             using (FileLogger logger = new FileLogger("C:\\Users\\admin\\log.txt"))
+            {
+                logger.Log("This is a log entry.");
+                logger.Log("Another log entry.");
+            }
+
         }
     }
 
@@ -14,17 +20,37 @@
 
         public FileLogger(string filePath)
         {
-            // Initialize StreamWriter instance
+            _writer = new StreamWriter(filePath, append: true);
         }
 
         public void Dispose()
         {
-            // Implement IDisposable pattern
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_writer != null)
+                {
+                    _writer.Dispose();
+                    _writer = null;
+                }
+            }
         }
 
         public void Log(string message)
         {
-            // Write message to the file
+            if (_writer != null)
+            {
+                _writer.WriteLine($"{DateTime.Now}: {message}");
+                _writer.Flush();
+            }
         }
     }
+
+
 }
+

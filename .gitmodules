@@ -1,0 +1,3 @@
+[submodule "week1"]
+	path = week1
+	url = https://github.com/pawankhandwe/four-weeks-training.git
