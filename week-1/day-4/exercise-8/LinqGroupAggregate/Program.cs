@@ -20,6 +20,48 @@
             // 2. Count the number of products in each category
             // 3. Calculate the total price of products in each category
             // 4. Find the most expensive product in each category
+
+            // a. Group products by category
+            var groupProducts = products.GroupBy(product => product.Category);
+
+            foreach (var group in groupProducts)
+            {
+                Console.WriteLine("Category: " + group.Key);
+                foreach (var product in group)
+                {
+                    Console.WriteLine("Product: " + product.Name);
+                }
+            }
+
+            // b. Count the number of products in each category
+            var count = products.GroupBy(product => product.Category)
+                                                 .Select(group => new { Category = group.Key, Count = group.Count() });
+
+            Console.WriteLine("\nProducts count in each category:");
+            foreach (var result in count)
+            {
+                Console.WriteLine($"Category: {result.Category}, Count: {result.Count}");
+            }
+
+            // c. Calculate the total price of products in each category
+            var total = products.GroupBy(product => product.Category)
+                                                .Select(group => new { Category = group.Key, TotalPrice = group.Sum(product => product.Price) });
+
+            Console.WriteLine("\nTotal price of products in each category:");
+            foreach (var result in total)
+            {
+                Console.WriteLine($"Category: {result.Category}, Total Price: {result.TotalPrice}");
+            }
+
+            // d. Find the most expensive product in each category
+            var costly = products.GroupBy(product => product.Category)
+                                                 .Select(group => new { Category = group.Key, MostExpensive = group.Max(product => product.Price) });
+
+            Console.WriteLine("\nMost expensive product in each category:");
+            foreach (var output in costly)
+            {
+                Console.WriteLine($"Category: {output.Category}, Most Expensive: {output.MostExpensive}");
+            }
         }
     }
 }
