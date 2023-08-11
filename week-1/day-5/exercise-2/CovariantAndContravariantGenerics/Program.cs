@@ -1,32 +1,39 @@
 ﻿namespace CovariantAndContravariantGenerics
 {
-    interface IProcessor<in TInput, out TResult>
+    public interface IProcessor<in TInput, out TResult>
     {
         TResult Process(TInput input);
     }
 
-    class StringToIntProcessor : IProcessor<string, int>
+    public class StringToIntProcessor : IProcessor<string, int>
     {
         // Implement Process method
         public int Process(string input)
         {
-            throw new NotImplementedException();
+            return input.Length;
         }
     }
 
-    class DoubleToStringProcessor : IProcessor<double, string>
+    public class DoubleToStringProcessor : IProcessor<double, string>
     {
         // Implement Process method
         public string Process(double input)
         {
-            throw new NotImplementedException();
+            return input.ToString();
         }
     }
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             // Demonstrate covariance and contravariance with IProcessor interface
+            IProcessor<string, int> stringProcessor = new StringToIntProcessor();
+            int result1 = stringProcessor.Process("Hello");
+            Console.WriteLine($"String length: {result1}");
+
+            IProcessor<double, string> doubleProcessor = new DoubleToStringProcessor();
+            string result2 = doubleProcessor.Process(3.14);
+            Console.WriteLine($"Double as string: {result2}");
         }
     }
-}
+} 
