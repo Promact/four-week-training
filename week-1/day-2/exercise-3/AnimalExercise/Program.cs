@@ -1,10 +1,20 @@
 ﻿namespace AnimalExercise
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            // Create a list of Animal objects, add Dog and Cat instances, and call their methods
+            // Create instances of Dog and Cat
+            Dog dogSound = new Dog();
+            Cat catSound = new Cat();
+
+            // Call the MakeSound method for both objects
+            dogSound.MakeSound();
+            catSound.MakeSound();
+
+            // Call the Move method for both objects
+            dogSound.Move();
+            catSound.Move();
         }
     }
 }

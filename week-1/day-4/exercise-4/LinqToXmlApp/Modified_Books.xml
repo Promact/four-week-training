@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Books>
+  <Book>
+    <Title>A Suitable Boy</Title>
+    <Author>Updated Author</Author>
+    <Genre>Novel</Genre>
+  </Book>
+  <Book>
+    <Title>The Alchemist</Title>
+    <Author>Paulo Coelho</Author>
+    <Genre>Fiction</Genre>
+  </Book>
+  <Book>
+    <Title>Turbulence</Title>
+    <Author>Samit Basu</Author>
+    <Genre>Science Fiction</Genre>
+  </Book>
+  <Book>
+    <Title>New Book</Title>
+    <Author>New Author</Author>
+    <Genre>Fantasy</Genre>
+  </Book>
+</Books>
