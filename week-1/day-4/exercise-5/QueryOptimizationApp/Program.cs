@@ -9,13 +9,15 @@ namespace QueryOptimizationApp
             List<int> data = GenerateRandomNumbers(10000000);
             Stopwatch sw = Stopwatch.StartNew();
             // Current implementation
-            var originalQuery = data.Where(x => x > 100).OrderByDescending(x => x).Take(10);
+           
+            sw.Start();
+            var originalQuery = data.Where(x => x > 100).OrderByDescending(x => x).Take(10).ToList();
             sw.Stop();
             Console.WriteLine("Original Query: {0} ms", sw.ElapsedMilliseconds);
 
             // Optimized implementation
             sw.Restart();
-            
+            var optimizedQuery = data.Where(x => x > 100).Take(10).OrderBy(x => -x).ToList();
             sw.Stop();
             Console.WriteLine("Optimized Query: {0} ms", sw.ElapsedMilliseconds);
         }
