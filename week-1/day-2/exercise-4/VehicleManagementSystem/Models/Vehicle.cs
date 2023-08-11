@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinqGroupAggregate
+namespace VehicleManagementSystem.Models
 {
-    public class Product
+    public class Vehicle
     {
+        public int Id { get; set; }
         public string? Name { get; set; }
-        public string? Category { get; set; }
-        public decimal Price { get; set; }
     }
 }

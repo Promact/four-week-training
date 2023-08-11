@@ -15,7 +15,11 @@ namespace QueryOptimizationApp
 
             // Optimized implementation
             sw.Restart();
-            
+            // Here for optimizing the linq query lazy loading is using
+            // AsParallel() Method execute LINQ queries in parallel
+            // We can also use IQueriable<int> and AsQueryable() Method when we are working with database
+            IEnumerable<int> optimizedQuery = data.AsParallel().Where(x => x > 100).OrderByDescending(x => x).Take(10);
+
             sw.Stop();
             Console.WriteLine("Optimized Query: {0} ms", sw.ElapsedMilliseconds);
         }
