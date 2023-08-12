@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LibraryManagement.UI
+{
+    public static class Colours
+    {
+        public static void Success()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
+        public static void Error()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+        }
+        public static void Normal()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+    }
+}
