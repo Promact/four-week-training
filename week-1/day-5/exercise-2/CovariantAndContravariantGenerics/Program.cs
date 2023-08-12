@@ -10,7 +10,15 @@
         // Implement Process method
         public int Process(string input)
         {
-            throw new NotImplementedException();
+            bool output = int.TryParse(input, out int result);
+            if (output)
+            {
+                return result;
+            }
+            else
+            {
+                throw new ArgumentException("Not a valid input integer.");
+            }
         }
     }
 
@@ -19,7 +27,7 @@
         // Implement Process method
         public string Process(double input)
         {
-            throw new NotImplementedException();
+            return input.ToString();
         }
     }
     internal class Program
@@ -27,6 +35,17 @@
         static void Main(string[] args)
         {
             // Demonstrate covariance and contravariance with IProcessor interface
+            IProcessor<string, int> stringToInt = new StringToIntProcessor();
+
+            IProcessor<double, string> doubleToStrng = new DoubleToStringProcessor();
+
+            //Process String to Integer
+            int intResult1 = stringToInt.Process("42");
+            Console.WriteLine($"Result for String to Int process: {intResult1} and (Type: {intResult1.GetType()})");
+
+            //Process Double to String
+            string stringResult1 = doubleToStrng.Process(34.22);
+            Console.WriteLine($"Result for String to Int process: {stringResult1} and (Type: {stringResult1.GetType()})");
         }
     }
 }
