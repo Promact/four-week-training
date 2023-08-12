@@ -1,30 +1,52 @@
-﻿namespace FileLoggerDisposableApp
+﻿namespace Day5_Task1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            // Use FileLogger and dispose of it properly
+            using (var logger = new FileLogger(@"C:\Users\admin\source\repos\Day5_Task1\Day5_Task1\log.txt"))
+            {
+                logger.Log("This is a log message");
+                logger.Log("Another log message");
+                Console.WriteLine("Successfully type message");
+            }
+           
         }
     }
 
-    class FileLogger : IDisposable
+    public class FileLogger : IDisposable
     {
-        private StreamWriter _writer;
+        StreamWriter writer;
 
-        public FileLogger(string filePath)
+        public FileLogger(String fileppath)
         {
-            // Initialize StreamWriter instance
+            writer = new StreamWriter(fileppath,append:true);
         }
 
+        //interface method to must implement
         public void Dispose()
         {
-            // Implement IDisposable pattern
+            Dispose(true);
+            GC.SuppressFinalize(this); //for memory management does not done automatic we have to apply this.
+        }
+
+        public virtual void Dispose(bool disposing)
+        {
+            if(disposing)
+            {
+                if (writer != null)
+                {
+                    writer.Dispose();
+                    writer = null;
+                }
+            }
         }
 
         public void Log(string message)
         {
-            // Write message to the file
-        }
+            string formattedMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
+
+            writer.WriteLine(formattedMessage);
+          
     }
 }

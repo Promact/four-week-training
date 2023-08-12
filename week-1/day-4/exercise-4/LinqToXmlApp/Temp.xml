@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Books>
+	<Book>
+		<Title>The Great Gatsby</Title>
+		<Author>F. Scott Fitzgerald</Author>
+		<Genre>Novel</Genre>
+	</Book>
+	<Book>
+		<Title>To Kill a Mockingbird</Title>
+		<Author>Harper Lee</Author>
+		<Genre>Fiction</Genre>
+	</Book>
+	<Book>
+		<Title>1984</Title>
+		<Author>George Orwell</Author>
+		<Genre>Dystopian</Genre>
+	</Book>
+	<Book>
+		<Title>2011</Title>
+		<Author>temp bnook</Author>
+		<Genre>Genre temp</Genre>
+	<Book>
+		<Title>2022</Title>
+		<Author>He hello</Author>
+		<Genre>General temp</Genre>
+	</Book>
+	</Book>
+</Books>
