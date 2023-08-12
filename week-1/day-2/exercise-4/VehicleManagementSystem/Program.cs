@@ -42,13 +42,12 @@
                             break;
 
                         case 2:
-                            Console.WriteLine("Enter the ID of the vehicle to remove:");
-                            Int16 idToRemove = Convert.ToInt16(Console.ReadLine());
-                            vehicleService.RemoveVehicle(idToRemove);
+                            
+                            vehicleService.RemoveVehicle();
                             break;
 
                         case 3:
-
+                            
                             vehicleService.ListVehicles();
                             break;
 
@@ -215,35 +214,54 @@
                 vehicleRepository.Add(vehicle);
             }
 
-            public void RemoveVehicle(int id)
+            public void RemoveVehicle()
             {
-                IVehicle vehicle = vehicleRepository.GetById(id);
-                if (vehicle != null)
+                IEnumerable<IVehicle> vehicles = vehicleRepository.GetAll();
+                if (vehicles.Any())
                 {
-                    vehicleRepository.Delete(vehicle);
+                    Console.WriteLine("Enter the ID of the vehicle to remove:");
+                    Int16 id = Convert.ToInt16(Console.ReadLine());
+                    IVehicle vehicle = vehicleRepository.GetById(id);
+                    if (vehicle != null)
+                    {
+                        vehicleRepository.Delete(vehicle);
+                    }
+                }
+                else
+                {
+                    Console.ForegroundColor= ConsoleColor.Red;
+                    Console.WriteLine("no vehicles are available  in factory to remove !");
+                    Console.ResetColor();
                 }
             }
 
             public void ListVehicles()
             {
                 IEnumerable<IVehicle> vehicles = vehicleRepository.GetAll();
-
-                foreach (var vehicle in vehicles)
+                if (vehicles.Any())
                 {
-                    if (vehicle is Car)
-                    {
 
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("Vehicle ID :" + vehicle.Id + " , Vehicle Name : Car ");
-                        Console.ResetColor();
-                    }
-                    else
+                    foreach (var vehicle in vehicles)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Vehicle ID :" + vehicle.Id + " , Vehicle Name : Truck ");
-                        Console.ResetColor();
-                    }
+                        if (vehicle is Car)
+                        {
 
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("Vehicle ID :" + vehicle.Id + " , Vehicle Name : Car ");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Vehicle ID :" + vehicle.Id + " , Vehicle Name : Truck ");
+                            Console.ResetColor();
+                        }
+
+                    }
+                }else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("no vehicle is available to show !"); Console.ResetColor();
                 }
             }
 
