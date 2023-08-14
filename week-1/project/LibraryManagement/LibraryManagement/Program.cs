@@ -116,31 +116,42 @@ namespace LibraryManagement
 
         static void DisplayMenu()
         {
-            // Display the menu options
             Console.WriteLine("Welcome to the Library Management System!\n");
-            Console.WriteLine("1. Add a book");
-            Console.WriteLine("2. Update a book");
-            Console.WriteLine("3. Delete a book");
-            Console.WriteLine("4. List all books");
-            Console.WriteLine("5. Add an author");
-            Console.WriteLine("6. Update an author");
-            Console.WriteLine("7. Delete an author");
-            Console.WriteLine("8. List all author");
-            Console.WriteLine("9. Add a borrower");
-            Console.WriteLine("10. Update a borrower");
-            Console.WriteLine("11. Delete a borrower");
-            Console.WriteLine("12. List all borrower");
-            Console.WriteLine("13. Register a book to a borrower");
-            Console.WriteLine("14. Display borrowed books");
-            Console.WriteLine("15. Search books");
 
-            Console.WriteLine("16. Filter books by status");
+            for (int i = 1; i <= 16; i++)
+            {
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.Write($"{i} ");
+                Console.ResetColor();
+
+                switch (i)
+                {
+                    case 1: Console.WriteLine(". Add a book"); break;
+                    case 2: Console.WriteLine(". Update a book"); break;
+                    case 3: Console.WriteLine(". Delete a book"); break;
+                    case 4: Console.WriteLine(". List all books"); break;
+                    case 5: Console.WriteLine(". Add an author"); break;
+                    case 6: Console.WriteLine(". Update an author"); break;
+                    case 7: Console.WriteLine(". Delete an author"); break;
+                    case 8: Console.WriteLine(". List all authors"); break;
+                    case 9: Console.WriteLine(". Add a borrower"); break;
+                    case 10: Console.WriteLine(". Update a borrower"); break;
+                    case 11: Console.WriteLine(". Delete a borrower"); break;
+                    case 12: Console.WriteLine(". List all borrowers"); break;
+                    case 13: Console.WriteLine(". Register a book to a borrower"); break;
+                    case 14: Console.WriteLine(". Display borrowed books"); break;
+                    case 15: Console.WriteLine(". Search books"); break;
+                    case 16: Console.WriteLine(". Filter books by status"); break;
+                }
+            }
+
             Console.WriteLine("\nEnter the number corresponding to the action you'd like to perform:");
         }
+
     }
 
     // Class definitions
-     public class Book
+    public class Book
     {
         public string Title { get; set; }
 
