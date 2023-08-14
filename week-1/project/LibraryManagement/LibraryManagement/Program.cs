@@ -420,7 +420,6 @@ namespace LibraryManagement
 
                 Console.Write("Enter Author ID To Update: ");
                 int searchAuthorId = Convert.ToInt32(Console.ReadLine());
-                //Author NameToUpdate = authors.Find(author => author.authorId == searchAuthorId);
                 Author NameToUpdate = authors.FirstOrDefault(author => author.authorId == searchAuthorId);
 
 
@@ -431,6 +430,20 @@ namespace LibraryManagement
                     NameToUpdate.FirstName = Console.ReadLine();
                     Console.Write("Enter the Last Name of the Author to update:  ");
                     NameToUpdate.LastName = Console.ReadLine();
+                    Console.Write("Enter Date of Birth of the Author to update (yyyy-MM-dd): ");
+                    string dobInput = Console.ReadLine();
+                    DateTime dob;
+
+                    if (DateTime.TryParse(dobInput, out dob))
+                    {
+                        NameToUpdate.DateOfBirth = dob;
+                        //Console.WriteLine("Date of Birth: " + dob.ToShortDateString());
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid date format. Please enter in yyyy-MM-dd format.");
+                        return;
+                    }
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Author Updated Sucessfully!");
                     Console.ResetColor();
@@ -459,7 +472,6 @@ namespace LibraryManagement
                 int AuthorId = Convert.ToInt32(Console.ReadLine());
 
 
-                //Author NameToDelete = authors.Find(author => author.authorId == AuthorId);
                 Author NameToDelete = authors.FirstOrDefault(author => author.authorId == AuthorId);
 
 
