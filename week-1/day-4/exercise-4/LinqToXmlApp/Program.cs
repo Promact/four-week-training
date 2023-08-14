@@ -1,4 +1,6 @@
-﻿namespace LinqToXmlApp
+﻿using System.Xml.Linq;
+
+namespace LinqToXmlApp
 {
     internal class Program
     {
@@ -32,11 +34,32 @@
                                     </Book>
                                 </Books>";
 
+           
             // Create an XDocument object from the XML string
+            XDocument xDocument = XDocument.Parse(xmlString);
 
             // Write the title of all books to the console
+            var allTitles = from book in xDocument.Descendants("Book")
+                            select book.Element("Title").Value;
+
+            Console.WriteLine("All Book Titles:");
+            foreach (var title in allTitles)
+            {
+                Console.WriteLine(title);
+            }
+
+            Console.WriteLine();
 
             // Write the title of all books with genre "Genre 1" to the console
+            var genre1Titles = from book in xDocument.Descendants("Book")
+                               where book.Element("Genre").Value == "Genre 1"
+                               select book.Element("Title").Value;
+
+            Console.WriteLine("Book Titles in Genre 1:");
+            foreach (var title in genre1Titles)
+            {
+                Console.WriteLine(title);
+            }
 
         }
     }
