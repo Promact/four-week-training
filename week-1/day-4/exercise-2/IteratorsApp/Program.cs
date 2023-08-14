@@ -7,6 +7,8 @@
             var fibonacci = FibonacciSequence().Take(10);
             foreach (int number in fibonacci)
             {
+
+
                 Console.WriteLine(number);
             }
         }
@@ -14,7 +16,18 @@
         // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield
         public static IEnumerable<int> FibonacciSequence()
         {
-            throw new NotImplementedException();
+            int number1 = 0;
+            int number2 = 1;
+
+            for (int i = 0; i < int.MaxValue; i++)
+            {
+                yield return number1;
+
+                int next = number1 + number2;
+                number1 = number2;
+                number2 = next;
+                //throw new NotImplementedException();
+            }
         }
     }
 }

@@ -1,20 +1,35 @@
-﻿namespace FactorialApp
+﻿using System;
+
+namespace FactorialApp
 {
     public class Program
     {
         public static void Main()
         {
+            Console.WriteLine("Hello, World!");
             Console.Write("Enter a number: ");
-            int number = int.Parse(Console.ReadLine());
+            int userInput = Convert.ToInt32(Console.ReadLine());
 
-            long factorial = CalculateFactorial(number);
-
-            Console.WriteLine($"The factorial of {number} is: {factorial}");
+            if (userInput < 0)
+            {
+                Console.WriteLine("Factorial is not valid for negative numbers.");
+            }
+            else
+            {
+                int result = CalculateFactorial(userInput);
+                Console.WriteLine($"Factorial of {userInput} is {result}");
+            }
         }
 
         public static long CalculateFactorial(int number)
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
+            int factorial = 1;
+            for (int i = 1; i <= number; i++)
+            {
+                factorial *= i;
+            }
+            return factorial;
         }
     }
 }
