@@ -15,7 +15,8 @@ namespace QueryOptimizationApp
 
             // Optimized implementation
             sw.Restart();
-            
+            var optimizedQuery = GetTopLargerNumbers(data, 10, 100);
+
             sw.Stop();
             Console.WriteLine("Optimized Query: {0} ms", sw.ElapsedMilliseconds);
         }
@@ -33,5 +34,24 @@ namespace QueryOptimizationApp
 
             return numbers;
         }
+
+        // Optimized method to get top 'count' numbers larger than 'threshold'
+        static List<int> GetTopLargerNumbers(List<int> data, int count, int threshold)
+        {
+            List<int> result = new List<int>(count);
+
+            foreach (int num in data)
+            {
+                if (num > threshold)
+                {
+                    result.Add(num);
+                    if (result.Count == count)
+                        break;
+                }
+            }
+
+            return result;
+        }
+
     }
 }
