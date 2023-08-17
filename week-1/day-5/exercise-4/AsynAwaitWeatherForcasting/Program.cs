@@ -1,21 +1,43 @@
-﻿namespace AsynAwaitWeatherForcasting
+﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+namespace AsynAwaitWeatherForcasting
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             string city = "Vadodara, India";
-            // Call the method to fetch weather data
-            // Display the weather data with city name
+            string apiKey = "YOUR_API_KEY";
+
+            string url = $"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}";
+
+            WeatherData weatherData = await FetchWeatherDataAsync(url);
+            DisplayWeatherData(weatherData);
         }
 
-        // Call OpenWeatherMap API to fetch weather data https://openweathermap.org/api
-        // Create a C# object from the JSON response
-        // Replace Task<string> with the C# object Task<WeatherData>
-        static async Task<string> FetchWeatherDataAsync(string url)
+        static async Task<WeatherData> FetchWeatherDataAsync(string url)
         {
-            // Fetch web page content asynchronously using HttpClient
-            throw new NotImplementedException();
+            using (HttpClient client = new HttpClient())
+            {
+                string json = await client.GetStringAsync(url);
+                WeatherData weatherData = JsonConvert.DeserializeObject<WeatherData>(json);
+                return weatherData;
+            }
         }
+
+        static void DisplayWeatherData(WeatherData weatherData)
+        {
+            Console.WriteLine($"Weather data for {weatherData.City}:");
+            // Display other weather information
+        }
+    }
+
+    public class WeatherData
+    {
+        public string City { get; set; }
+        // Other properties representing weather information
     }
 }
